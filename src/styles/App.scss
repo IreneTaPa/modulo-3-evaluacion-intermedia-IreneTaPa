@@ -1,0 +1,14 @@
+.h1 {
+    color: red; 
+}
+
+.quote__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.list_elements {
+    list-style: none;
+    border: 1px solid greenyellow; 
+}
