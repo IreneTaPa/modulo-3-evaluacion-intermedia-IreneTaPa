@@ -7,6 +7,7 @@ function App() {
   const [quoteList, setQuoteList] = useState([]);
   const [quoteSearch, setQuoteSearch] = useState('');
   const [filterByCharacter, setFilterByCharacter] = useState('Todos');
+  const [newQuote, setNewQuote] = useState({});
 
   useEffect(() => {
     fetch(urlApi)
@@ -16,17 +17,25 @@ function App() {
       });
   }, []);
   const renderQuotes = () => {
-    const filteredQuotes = quoteList.filter((data) =>
-      data.quote.toLowerCase().includes(quoteSearch.toLowerCase())
-    );
-    /*.filter((data) => !quoteSearch || data.character === filterByCharacter);*/
-
-    return filteredQuotes.map((eachQuote, index) => (
-      <li key={index} className="list_elements">
-        {eachQuote.quote}
-        <p>{eachQuote.character}</p>
-      </li>
-    ));
+    return quoteList
+      .filter((data) =>
+        //filtro para filtrar por frase
+        data.quote.toLowerCase().includes(quoteSearch.toLowerCase())
+      )
+      .filter((data) => {
+        if (filterByCharacter === 'Todos') {
+          return true; //todos los elementos cumplen la condición (se visualizan todos), seria lo mismo que pone return data;
+        } else {
+          return data.character === filterByCharacter;
+          //si no, filtra la data que es igual que las opciones del filterByCharacter(se visualiza solo las frases del personaje que hemos seleccionado)
+        }
+      })
+      .map((eachQuote, index) => (
+        <li key={index} className="list_elements">
+          {eachQuote.quote}
+          <p>{eachQuote.character}</p>
+        </li>
+      ));
   };
   const handleFilterByQuote = (ev) => {
     setQuoteSearch(ev.target.value);
@@ -34,9 +43,24 @@ function App() {
   const handleFilterByCharacter = (ev) => {
     setFilterByCharacter(ev.target.value);
   };
+  const handleNewQuote = (ev) => {
+    //hacemos una copia se setNewQuote y le decimos que coja los datos del objeto (quote y character)
+    setNewQuote({ ...newQuote, [ev.target.name]: ev.target.value });
+  };
+  const handleClick = (ev) => {
+    ev.preventDefault();
+    //hacemos copia de lo que tenemos y añadele la nueva info
+    setQuoteList([...quoteList, newQuote]);
+    setNewQuote({
+      quote: '',
+      character: '',
+    });
+  };
   return (
     <div>
-      <h3>Frases de Friends</h3>
+      <header>
+        <h1>Frases de Friends</h1>
+      </header>
       <form>
         <label htmlFor="quote">Filtrar por frase</label>
         <input
@@ -63,6 +87,23 @@ function App() {
         </select>
       </form>
       <ul className="quote__list">{renderQuotes()}</ul>
+      <form>
+        <label htmlFor="quote">Añade la frase</label>
+        <input
+          type="text"
+          name="quote"
+          onInput={handleNewQuote}
+          value={newQuote.quote}
+        />
+        <label htmlFor="">Añade el personaje</label>
+        <input
+          type="text"
+          name="character"
+          onInput={handleNewQuote}
+          value={newQuote.character}
+        />
+        <button onClick={handleClick}>Añadir la nueva frase</button>
+      </form>
     </div>
   );
 }
