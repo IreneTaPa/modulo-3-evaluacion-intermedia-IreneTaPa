@@ -32,8 +32,8 @@ function App() {
       })
       .map((eachQuote, index) => (
         <li key={index} className="list_elements">
-          {eachQuote.quote}
-          <p>{eachQuote.character}</p>
+          <div className="text__quote">{eachQuote.quote}</div>
+          <p className="text__character">{eachQuote.character}</p>
         </li>
       ));
   };
@@ -57,53 +57,62 @@ function App() {
     });
   };
   return (
-    <div>
-      <header>
-        <h1>Frases de Friends</h1>
+    <div className="page">
+      <header className="hero">
+        <h1 className="title">Frases de Friends</h1>
       </header>
-      <form>
-        <label htmlFor="quote">Filtrar por frase</label>
-        <input
-          type="text"
-          name="quote"
-          id="quote"
-          value={quoteSearch}
-          onInput={handleFilterByQuote}
+      <main className="main">
+        <form className="form">
+          <label htmlFor="quote">Filtrar por frase</label>
+          <input
+            type="text"
+            name="quote"
+            id="quote"
+            value={quoteSearch}
+            onInput={handleFilterByQuote}
+          />
+          <label htmlFor="character">Filtrar por personaje</label>
+          <select
+            name="character"
+            id="character"
+            value={filterByCharacter}
+            onChange={handleFilterByCharacter}
+          >
+            <option value="Todos">Todos</option>
+            <option value="Ross">Ross</option>
+            <option value="Monica">Monica</option>
+            <option value="Joey">Joey</option>
+            <option value="Phoebe">Phoebe</option>
+            <option value="Chandler">Chandler</option>
+            <option value="Rachel">Rachel</option>
+          </select>
+        </form>
+        <ul className="quote__list">{renderQuotes()}</ul>
+        <form className="form">
+          <label htmlFor="quote">Añade la frase</label>
+          <input
+            type="text"
+            name="quote"
+            onInput={handleNewQuote}
+            value={newQuote.quote}
+          />
+          <label htmlFor="">Añade el personaje</label>
+          <input
+            type="text"
+            name="character"
+            onInput={handleNewQuote}
+            value={newQuote.character}
+          />
+          <button onClick={handleClick}>Añadir la nueva frase</button>
+        </form>
+      </main>
+      <footer>
+        <img
+          className="logo"
+          src="https://1000marcas.net/wp-content/uploads/2020/12/Friends-logo-3.png"
+          alt="Logo Friends"
         />
-        <label htmlFor="character">Filtrar por personaje</label>
-        <select
-          name="character"
-          id="character"
-          value={filterByCharacter}
-          onChange={handleFilterByCharacter}
-        >
-          <option value="Todos">Todos</option>
-          <option value="Ross">Ross</option>
-          <option value="Monica">Monica</option>
-          <option value="Joey">Joey</option>
-          <option value="Phoebe">Phoebe</option>
-          <option value="Chandler">Chandler</option>
-          <option value="Rachel">Rachel</option>
-        </select>
-      </form>
-      <ul className="quote__list">{renderQuotes()}</ul>
-      <form>
-        <label htmlFor="quote">Añade la frase</label>
-        <input
-          type="text"
-          name="quote"
-          onInput={handleNewQuote}
-          value={newQuote.quote}
-        />
-        <label htmlFor="">Añade el personaje</label>
-        <input
-          type="text"
-          name="character"
-          onInput={handleNewQuote}
-          value={newQuote.character}
-        />
-        <button onClick={handleClick}>Añadir la nueva frase</button>
-      </form>
+      </footer>
     </div>
   );
 }

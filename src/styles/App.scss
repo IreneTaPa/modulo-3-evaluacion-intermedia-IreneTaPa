@@ -1,14 +1,61 @@
-.h1 {
-    color: red; 
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+.page {
+    background-color: rgb(151, 95, 184);
+}
+.hero {
+    background-image: url(../images/Friends.jpg);
+    background-repeat: no-repeat;
+    background-position: 50% 15%;
+    background-size: cover;
+    height: 35vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+.title {
+    color:rgb(214, 163, 23); 
+    text-transform:uppercase; 
+    padding-bottom: 5px;    
 }
 
 .quote__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
     gap: 10px;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 15px;
 }
 
 .list_elements {
     list-style: none;
-    border: 1px solid greenyellow; 
+    border: 3px solid rgb(214, 163, 23); 
+    border-radius: 10px;
+    width: 400px;
+}
+
+.text__quote {
+    text-align: center;
+    padding-top: 15px;
+}
+.text__character {
+    text-align: center;
+}
+footer {
+    height: 20%; 
+}
+.logo {
+    height: 150px;
+    display: block;
+   margin: auto; 
 }
