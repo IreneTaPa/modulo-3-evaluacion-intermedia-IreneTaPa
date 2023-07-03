@@ -32,8 +32,8 @@ function App() {
       })
       .map((eachQuote, index) => (
         <li key={index} className="list_elements">
-          <div className="text__quote">{eachQuote.quote}</div>
-          <p className="text__character">{eachQuote.character}</p>
+          <p className="text__quote">{eachQuote.quote}</p>
+          <h4 className="text__character">{eachQuote.character}</h4>
         </li>
       ));
   };
@@ -63,18 +63,24 @@ function App() {
       </header>
       <main className="main">
         <form className="form">
-          <label htmlFor="quote">Filtrar por frase</label>
+          <label className="label" htmlFor="quote">
+            Filtrar por frase
+          </label>
           <input
             type="text"
             name="quote"
             id="quote"
+            className="input"
             value={quoteSearch}
             onInput={handleFilterByQuote}
           />
-          <label htmlFor="character">Filtrar por personaje</label>
+          <label className="label" htmlFor="character">
+            Filtrar por personaje
+          </label>
           <select
             name="character"
             id="character"
+            className="input"
             value={filterByCharacter}
             onChange={handleFilterByCharacter}
           >
@@ -89,21 +95,29 @@ function App() {
         </form>
         <ul className="quote__list">{renderQuotes()}</ul>
         <form className="form">
-          <label htmlFor="quote">Añade la frase</label>
+          <label className="label" htmlFor="quote">
+            Añade la frase
+          </label>
           <input
             type="text"
             name="quote"
+            className="input"
             onInput={handleNewQuote}
             value={newQuote.quote}
           />
-          <label htmlFor="">Añade el personaje</label>
+          <label className="label" htmlFor="">
+            Añade el personaje
+          </label>
           <input
             type="text"
             name="character"
+            className="input"
             onInput={handleNewQuote}
             value={newQuote.character}
           />
-          <button onClick={handleClick}>Añadir la nueva frase</button>
+          <button className="btn" onClick={handleClick}>
+            AÑADIR!
+          </button>
         </form>
       </main>
       <footer>

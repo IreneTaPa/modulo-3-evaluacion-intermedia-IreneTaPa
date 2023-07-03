@@ -7,8 +7,8 @@
     background-color: rgb(151, 95, 184);
 }
 .hero {
-    background-image: url(../images/Friends.jpg);
-    background-repeat: no-repeat;
+    background-image:url(../images/Friends.jpg);
+    box-shadow: 20px 4px 5px 3px;
     background-position: 50% 15%;
     background-size: cover;
     height: 35vh;
@@ -18,16 +18,18 @@
 }
 .title {
     color:rgb(214, 163, 23); 
+    font-family: 'Kalam', cursive;
     text-transform:uppercase; 
     padding-bottom: 5px;    
 }
 
 .quote__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    justify-items: center;
-    gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr  1fr 1fr;
+        grid-template-rows: 1fr; 
+        gap: 10px;
+        justify-content: space-evenly;
+        justify-items: center;
 }
 .form {
     display: flex;
@@ -36,20 +38,51 @@
     padding-top: 20px;
     padding-bottom: 15px;
 }
+.label {
+    font-family: 'Kalam', cursive;
+}
+.input{
+   border: 3px solid rgb(214, 163, 23);
+   border-radius: 5px;
+   height: 30px;
+   background-color: rgb(151, 95, 184) ;
+}
+
+.btn {
+    background-color: rgb(46, 15, 65);
+    border: 3px solid rgb(46, 15, 65); 
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    color: rgb(214, 163, 23); 
+    box-shadow: 5px 10px rgb(140, 74, 180);
+    font-family: 'Kalam', cursive;
+    
+}
+.btn:hover{
+    background-color: rgb(214, 163, 23);
+    border: 3px solid rgb(214, 163, 23);
+    color: rgb(46, 15, 65); 
+}
 
 .list_elements {
     list-style: none;
     border: 3px solid rgb(214, 163, 23); 
     border-radius: 10px;
-    width: 400px;
+    width: 400px; 
+    
 }
 
 .text__quote {
     text-align: center;
     padding-top: 15px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 .text__character {
     text-align: center;
+    padding-bottom: 5px;
+    font-family: 'Kalam', cursive;
 }
 footer {
     height: 20%; 
